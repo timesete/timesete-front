@@ -11,7 +11,7 @@ interface ArticleProps {
   href?: string;
 }
 
-export const ArticleMedium: FunctionComponent<ArticleProps> = ({ title, description, src, href="" }) => {
+export const ArticleMedium: FunctionComponent<ArticleProps> = ({ title, description, src, href = "" }) => {
 
   return (
     <ArticleMediumWrapper>
@@ -19,15 +19,13 @@ export const ArticleMedium: FunctionComponent<ArticleProps> = ({ title, descript
       <div>
         <h3>{title}</h3>
         <p>{description}</p>
-        <Link href={href}>
-          <Button>Saiba mais</Button>
-        </Link>
+        <Button><a href={href} target="blank">Saiba mais</a></Button>
       </div>
     </ArticleMediumWrapper>
   )
 }
 
-export const ArticleLarge: FunctionComponent<ArticleProps> = ({ title, description, src, href="" }) => {
+export const ArticleLarge: FunctionComponent<ArticleProps> = ({ title, description, src, href = "" }) => {
 
   return (
     <ArticleLargeWrapper>
@@ -35,24 +33,20 @@ export const ArticleLarge: FunctionComponent<ArticleProps> = ({ title, descripti
       <div>
         <h3>{title}</h3>
         <p>{description}</p>
-        <Link href={href}>
-          <Button>Saiba mais</Button>
-        </Link>
+        <Button><a href={href} target="blank">Saiba mais</a></Button>
       </div>
     </ArticleLargeWrapper>
   )
 }
 
-export const ArticleSmall: FunctionComponent<ArticleProps> = ({ description, src, href="" }) => {
+export const ArticleSmall: FunctionComponent<ArticleProps> = ({ description, src, href = "" }) => {
 
   return (
     <ArticleSmallWrapper>
       <p>{description}</p>
       {src && <Image src={src} width={500} height={500} alt="Imagem da noticia" objectFit="cover" />}
       <div>
-        <Link href={href}>
-          <a>saiba mais</a>
-        </Link>
+        <a href={href} target="blank">saiba mais</a>
       </div>
     </ArticleSmallWrapper>
   )

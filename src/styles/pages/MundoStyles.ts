@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const MundoWrapper = styled.div`
 position: relative;
@@ -41,14 +41,19 @@ main {
   }
 }
 `
+interface PersonagemProps {
+  left: number;
+  top: number;
+}
 
-
-export const Personagem = styled.div`
+export const Personagem = styled.div<PersonagemProps>`
 img {
   position: absolute;
 
-  left: 200px;
-  top: 450px;
+  ${props => props && css`
+    left: ${props.left}px;
+    top: ${props.top}px;
+  `}
 
   transition: transform .3s;
 

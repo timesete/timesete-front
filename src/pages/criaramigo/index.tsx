@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { useCallback, useState } from "react";
 import { Button, HomeHeader } from "../../components"
 import { Parts, ColorButton, Colors, SelectionBox, SelectorOption, Options, CriarAmigoWrapper, TomDePele, Cabelo, Corpo, Pernas } from "../../styles/pages/CriarAmigoStyles";
@@ -11,10 +12,11 @@ const cabelos = [
 ];
 
 const tonsDePele = [
-  {src: 'criacao/selectors/SKIN-1.svg', assets: 'criacao/assets/PELE 04.svg', type: 'tom de pele'},
-  {src: 'criacao/selectors/SKIN-2.svg', assets: 'criacao/assets/PELE 03.svg', type: 'tom de pele'},
-  {src: 'criacao/selectors/SKIN-3.svg', assets: 'criacao/assets/PELE 02.svg', type: 'tom de pele'},
-  {src: 'criacao/selectors/SKIN-4.svg', assets: 'criacao/assets/PELE 01.svg', type: 'tom de pele'},
+  {src: 'criacao/selectors/SKIN-1.svg', assets: 'criacao/assets/PELE 05.svg', type: 'tom de pele'},
+  {src: 'criacao/selectors/SKIN-2.svg', assets: 'criacao/assets/PELE 04.svg', type: 'tom de pele'},
+  {src: 'criacao/selectors/SKIN-3.svg', assets: 'criacao/assets/PELE 03.svg', type: 'tom de pele'},
+  {src: 'criacao/selectors/SKIN-4.svg', assets: 'criacao/assets/PELE 02.svg', type: 'tom de pele'},
+  {src: 'criacao/selectors/SKIN-5.svg', assets: 'criacao/assets/PELE 01.svg', type: 'tom de pele'},
 ]
 
 const pernas = [
@@ -107,7 +109,9 @@ const CriarAmigo = () => {
               ))}
             </Options>
             <footer>
-              <Button>Finalizar criação</Button>
+              <Link href="/mundo">
+                <Button>Finalizar criação</Button>
+              </Link>
             </footer>
           </SelectionBox>
         </section>

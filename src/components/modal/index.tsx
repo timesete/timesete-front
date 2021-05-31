@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { FunctionComponent } from "react"
+import { FunctionComponent, useState } from "react"
 import { Button } from ".."
 import { useHomeContext } from "../../context/HomeContext"
 
@@ -10,7 +10,7 @@ interface ModalProps {
   description: string;
 }
 
-export const Modal: FunctionComponent<ModalProps> = ({ title = "", description ="", children}) => {
+export const Modal: FunctionComponent<ModalProps> = ({ title = "", description = "", children }) => {
 
   return (
     <ModalOverlay>
@@ -31,33 +31,35 @@ export const Modal: FunctionComponent<ModalProps> = ({ title = "", description =
   )
 }
 
-export const ModalInfo: FunctionComponent = () => {
-  const { changeVideoStateModal } = useHomeContext();
+export const ModalInfo: FunctionComponent = ({
+
+}) => {
+  const {changeVideoStateModal, modalData} = useHomeContext();
 
   return (
     <ModalOverlayInfo>
-        <ModalVideo>
+      <ModalVideo>
         <header>
           <button onClick={changeVideoStateModal}><img src="icons/close.svg" alt="Fechar" /></button>
         </header>
         <main>
           <div>
-            <iframe width="560" height="315" src="https://www.youtube.com/embed/zWhGS-AzSQ0" title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
+            <iframe width="560" height="315" src={modalData.srcYoutube} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
           </div>
         </main>
         <div>
-          <h2>O que é LGBTQIA+ para crianças!</h2>
+          <h2>{modalData.title}</h2>
           <div>
-            <img src="https://yt3.ggpht.com/ytc/AAUvwng1N2YzEowbVSD76eUvrxIZ7Sa0JKHWQg6zx3SZFg=s176-c-k-c0x00ffffff-no-rj" alt="Imagem de perfil do Youtube" />
+            <img src={modalData.srcThumbnail} alt="Imagem de perfil do Youtube" />
             <div>
-              <h3>Ana Paula Xongani</h3>
-              <p>95,9 mil inscritos</p>
+              <h3>{modalData.author}</h3>
+              <p>{modalData.subscribe}</p>
             </div>
           </div>
 
-          <Button>Abrir no Youtube</Button>
+          <Button><a href={modalData.srcYoutube} target="blank">Abrir no Youtube</a></Button>
         </div>
-        </ModalVideo>
+      </ModalVideo>
     </ModalOverlayInfo>
   )
 }

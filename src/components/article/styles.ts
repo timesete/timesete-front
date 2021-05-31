@@ -40,6 +40,18 @@ div:last-child {
     border-radius: 8px;
 
     margin: .75rem 0px;
+
+    a {
+      text-decoration: none;
+      font-family: Nunito;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 28px;
+
+      color: #FFFFFF;
+
+    }
   }
 }
 `
@@ -87,6 +99,18 @@ div:last-child {
     border-radius: 8px;
 
     margin: .75rem 0px;
+
+    a {
+      font-family: Nunito;
+font-style: normal;
+font-weight: 900;
+font-size: 18px;
+line-height: 28px;
+
+color: #FFFFFF;
+
+text-decoration: none;
+    }
   }
 }`
 

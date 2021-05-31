@@ -126,7 +126,7 @@ main {
 
     iframe {
       width: 400px;
-    height: 255.5px;
+      height: 255.5px;
     }
 
     img {
@@ -199,17 +199,21 @@ main {
 
     background: #2CCADF;
 
-    font-family: Nunito;
-    font-style: normal;
-    font-weight: 900;
-    font-size: 18px;
-    line-height: 28px;
+
 
 
     position: absolute;
     bottom: 1rem;
+
+    a {
+      text-decoration: none;
+
+      color: #fff;
+      font-family: Nunito;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 28px;
+    }
   }
-}
-
-
-`
+}`
