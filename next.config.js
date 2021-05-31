@@ -1,7 +1,7 @@
 // next.config.js
 module.exports = {
   images: {
-    domains: ['images.unsplash.com', 'image.freepik.com'],
+    domains: ['images.unsplash.com', 'image.freepik.com', 'www.sescrio.org.br'],
   },
   env: {
     API_URL: 'https://backend-timesete-mundo-diverso.herokuapp.com/api/v1',

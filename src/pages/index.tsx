@@ -46,7 +46,7 @@ const Home = ({ token, refreshToken}: HomeProps) => {
             description="Ensinando a criança sobre culturas e religiões diversas."
             />
             <ArticleMedium
-            src="https://images.unsplash.com/photo-1617573211120-1165b16c2900?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=345&q=80"
+            src="https://www.sescrio.org.br/wp-content/uploads/2021/04/Literatura-Ind%C3%ADgena-Dia-do-%C3%8Dndio.jpg"
             title="Gente da minha terra"
             description="Descubra a diversidade de povos indígenas do Brasil."
             />
