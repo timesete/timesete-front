@@ -1,32 +1,35 @@
 import { Form } from "@unform/web";
 import Link from "next/link";
-import { useCallback, useEffect, useState } from "react";
+import { FormEvent, useCallback, useEffect, useState } from "react";
 import { BsEyeSlash, BsPencil } from "react-icons/bs";
 import { GoMail } from "react-icons/go";
 
-import { Button, Footer, Header, Input } from "../../components";
+import { RedefinePasswordWrapper } from "../../styles/pages/RedefinirSenhaStyles";
+import { Button, Footer, Header, Input, Modal } from "../../components";
 
-import { RedefinePasswordWrapper } from "./styles";
+interface FormProps extends FormEvent {
+  email: string;
+  answer: string;
+  confirmPassword: string;
+}
 
-export default function RedefinePassword() {
+const RedefinirSenha = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  useEffect(()=>{
-    setCurrentStep(1);
-    console.log('0')
-  },[])
-
-  const handleNextStep = useCallback(()=>{
-    setCurrentStep(2);
-  },[])
+  const handleSubmit = useCallback(({ email, answer, confirmPassword }: FormProps) => {
+    if(currentStep === 1) {
+      setCurrentStep(2);
+    };
+  }, [])
 
   return (
     <RedefinePasswordWrapper currentStep={currentStep}>
       <Header />
       <main>
-        <Form onSubmit={()=>{}}>
-          {currentStep === 1 && (
-            < >
+
+        {currentStep === 1 && (
+          <Form onSubmit={handleSubmit}>
             <fieldset>
               <legend>Insira seu e-mail cadastrado</legend>
               <section>
@@ -34,15 +37,19 @@ export default function RedefinePassword() {
                 <span></span>
                 <div>2</div>
               </section>
-              <Input name="email" title="E-mail" type="email" placeholder="Insira seu e-mail" required icon={GoMail} />
+              <Input name="email" title="E-mail" type="email" placeholder="Insira seu e-mail" icon={GoMail} required />
             </fieldset>
 
-            <Button type="button" onClick={handleNextStep}>Avançar</Button>
-            </>
-          )}
+            <Button type="submit">Avançar</Button>
+            <Link href="/entrarnaconta">
+              <a>Cancelar</a>
+            </Link>
+          </Form>
+        )
+        }
 
-          {currentStep === 2 && (
-            < >
+        {currentStep === 2 && (
+          <Form onSubmit={handleSubmit}>
             <fieldset>
               <legend>Insira sua resposta secreta e a nova senha</legend>
               <section>
@@ -51,20 +58,22 @@ export default function RedefinePassword() {
                 <div>2</div>
               </section>
               <Input name="answer" title="Qual o sobrenome da sua avó?" placeholder="Insira a resposta" type="text" required icon={BsPencil} />
-              <Input name="newPassword" title="Digite sua nova senha" type="password" placeholder="Digite sua nova senha" required icon={BsEyeSlash} />
-              <Input name="reNewPassword" title="Confirme sua nova senha" type="password" placeholder="Confirme sua nova senha" required icon={BsEyeSlash} />
+              <Input name="confirmPassword" title="Digite sua nova senha" type="password" placeholder="Digite sua nova senha" required icon={BsEyeSlash} />
+              <Input name="confirmPassword" title="Confirme sua nova senha" type="password" placeholder="Confirme sua nova senha" required icon={BsEyeSlash} />
             </fieldset>
 
-            <Button type="submit" onClick={handleNextStep}>Redefinir senha</Button>
-            </>
-          )}
-
-          <Link href="/entrarnaconta">
-            <a>Cancelar</a>
-          </Link>
-        </Form>
+            <Button type="submit">Redefinir senha</Button>
+            <Link href="/entrarnaconta">
+              <a>Cancelar</a>
+            </Link>
+          </Form>
+        )}
       </main>
       <Footer />
+      {isModalOpen && <Modal title="Senha redefinida" description="Você alterou sua senha com sucesso." />}
     </RedefinePasswordWrapper>
+
   )
 }
+
+export default RedefinirSenha;

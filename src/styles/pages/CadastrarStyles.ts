@@ -48,5 +48,4 @@ main {
       background: #2CCADF;
     }
   }
-}
-`
+}`

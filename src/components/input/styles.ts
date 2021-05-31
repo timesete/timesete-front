@@ -31,9 +31,13 @@ border: 1px solid #C5C1C8;
 
 background-color: #FFF;
 
-${props => props.isFocused && css`
+${props => props.isFilled && css`
   border: 2px solid #BD22F3;
 `}
+
+${props => props.isFocused && css`
+    border: 2px solid #3BB9EB;
+  `}
 
 input {
   flex: 1;
@@ -54,9 +58,5 @@ input {
 
 svg {
   margin-left: 1rem;
-
-  ${props => props.isFilled && css`
-    fill: #BD22F3;
-  `}
 }
 `

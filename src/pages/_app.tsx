@@ -1,13 +1,15 @@
+import { AuthProvider } from "../context/AuthContext";
+import { HomeProvider } from "../context/HomeContext";
 import { GlobalStyle } from "../styles/global";
-
-GlobalStyle
 
 function MyApp({ Component, pageProps }) {
   return (
-    < >
-      <Component {...pageProps} />
-      <GlobalStyle />
-    </>
+    <AuthProvider>
+      <HomeProvider>
+        <Component {...pageProps} />
+        <GlobalStyle />
+      </HomeProvider>
+    </AuthProvider>
   )
 };
 

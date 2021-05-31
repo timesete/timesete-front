@@ -26,12 +26,7 @@ export const Input: FunctionComponent<InputProps> = ({ icon: Icon, name, title, 
 
   const handleInputBlur = useCallback(()=>{
     setIsFocused(false);
-
-    if(inputRef.current?.value){
-      setIsFilled(true);
-    } else {
-      setIsFilled(false);
-    };
+    setIsFilled(!!inputRef.current?.value);
   },[])
 
   return (
@@ -43,6 +38,7 @@ export const Input: FunctionComponent<InputProps> = ({ icon: Icon, name, title, 
             onFocus={() => setIsFocused(true)}
             onBlur={handleInputBlur}
             ref={inputRef}
+            defaultValue={defaultValue}
           />
           {Icon && <Icon size={18} color="#918A93" />}
         </InputStyled>

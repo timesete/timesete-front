@@ -1,6 +1,6 @@
 import { FunctionComponent } from "react";
 
-import { FooterWrapper } from "./styles";
+import { FooterHomeWrapper, FooterWrapper } from "./styles";
 
 export const Footer: FunctionComponent = ({ children }) => {
   return (
@@ -16,3 +16,22 @@ export const Footer: FunctionComponent = ({ children }) => {
     </FooterWrapper>
   )
 };
+
+export const FooterHome = () => {
+
+  return (
+    <FooterHomeWrapper>
+      <div>
+        <img src="icons/logo_white.svg" alt="Mundo diverso" />
+        <p>© 2021, Mundo Diverso | Todos os Direitos Reservados</p>
+      </div>
+      <div>
+          <img src="icons/facebook_white.svg" alt="Facebook" />
+          <img src="icons/instagram_white.svg" alt="Instagram" />
+      </div>
+      <div>
+        <img src="icons/applestore_black.svg" alt="Apple store" />
+      </div>
+    </FooterHomeWrapper>
+  )
+}

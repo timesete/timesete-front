@@ -5,6 +5,8 @@ interface RedefinePasswordProps {
 }
 
 export const RedefinePasswordWrapper = styled.div<RedefinePasswordProps>`
+height: 100vh;
+
 main {
   display: flex;
   align-items: center;
@@ -63,8 +65,6 @@ main {
           `}
         }
 
-
-
         div {
           display: flex;
           align-items: center;
@@ -91,11 +91,11 @@ main {
           }
 
           ${props => props.currentStep === 2 && css`
-            &:last-child {
-              color: #FFFFFF;
-              background: #D677F8;
-              border: 2.7027px solid #BD22F3
-            }
+          &:last-child {
+            color: #FFFFFF;
+            background: #D677F8;
+            border: 2.7027px solid #BD22F3
+          }
           `}
         }
       }
@@ -133,3 +133,4 @@ footer {
   `}
 }
 `;
+
