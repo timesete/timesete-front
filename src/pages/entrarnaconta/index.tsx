@@ -3,12 +3,12 @@ import { Form } from "@unform/web";
 import { GoMail } from "react-icons/go"
 import { BsEyeSlash } from "react-icons/bs";
 import { useCallback } from "react";
+import { useRouter } from "next/router";
 
 import { LoginWrapper } from "../../styles/pages/EntrarNaContarStyles";
 
 import { Button, Footer, Header, Input } from "../../components";
 import { useAuth } from "../../context/AuthContext";
-import withAuth from "../../utils/withAuth";
 
 type FormProps = {
   email: string;
@@ -17,12 +17,14 @@ type FormProps = {
 
 const Login = () => {
   const { signIn } = useAuth();
+  const router = useRouter();
 
   const handleSubmit = useCallback( async({ email, password }: FormProps) => {
     try {
       await signIn({email, password});
+      router.push("/");
     } catch (error) {
-      alert("Email ou senha inválios!")
+      alert("Email ou senha inválios!");
     }
   }, []);
 
@@ -55,4 +57,4 @@ const Login = () => {
   )
 };
 
-export default withAuth(Login);
+export default Login;
