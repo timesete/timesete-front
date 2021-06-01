@@ -13,7 +13,7 @@ interface HeaderProps extends HTMLAttributes<HTMLLIElement> {
 }
 
 export const Header: FunctionComponent<HeaderProps> = ({ children, icon: Icon, iconColor = "#000", size = 20, ...rest }) => {
-  const { logout } = useAuth();
+  const { signOut } = useAuth();
 
   return (
     <HeaderWrapper>
@@ -24,7 +24,7 @@ export const Header: FunctionComponent<HeaderProps> = ({ children, icon: Icon, i
         {children && (
           <ul>
             <Link href="/">
-              <a onClick={logout}>
+              <a onClick={signOut}>
                 {Icon && <Icon size={size} color={iconColor} />}
                 {children}
               </a>

@@ -8,9 +8,10 @@ import { ModalOverlayInfo, ModalOverlay, ModalVideo } from "./styles"
 interface ModalProps {
   title: string;
   description: string;
+  href: string;
 }
 
-export const Modal: FunctionComponent<ModalProps> = ({ title = "", description = "", children }) => {
+export const Modal = ({ title = "", description = "", href}: ModalProps) => {
 
   return (
     <ModalOverlay>
@@ -22,7 +23,7 @@ export const Modal: FunctionComponent<ModalProps> = ({ title = "", description =
           <p>{description}</p>
         </div>
         <footer>
-          <Link href="/entrarnaconta">
+          <Link href={href}>
             <Button>Entrar na conta</Button>
           </Link>
         </footer>

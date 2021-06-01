@@ -1,5 +1,4 @@
 import Image from "next/image";
-import Link from "next/link";
 import { FunctionComponent } from "react";
 import { Button } from ".."
 import { ArticleLargeWrapper, ArticleMediumWrapper, ArticleSmallWrapper } from "./styles"

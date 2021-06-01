@@ -3,12 +3,11 @@ import * as Yup from "yup";
 import { BsEyeSlash } from "react-icons/bs";
 import { useCallback, useState } from "react";
 import { GoMail } from "react-icons/go";
-import { useRouter } from "next/router";
 
 
 import { RegisterWrapper } from "../../styles/pages/CadastrarStyles";
 import { Header, Footer, Input, Button, Select, Modal } from "../../components";
-import { api } from "../../services/api";
+import { useAuth } from "../../context/AuthContext";
 
 interface FormData {
   email: string;
@@ -18,18 +17,16 @@ interface FormData {
 
 const Register = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const router = useRouter();
+  const { signIn, signUp } = useAuth();
 
-  const handleSubmit = useCallback( async (data: FormData) => {
+  const handleSubmit = useCallback(async (data: FormData) => {
     const user = {
       email: data.email,
       password: data.password,
       answer: data.answer,
       name: data.email,
       photoLink: '',
-    }
-
-    console.log(user, data)
+    };
 
     try {
       const schema = Yup.object().shape({
@@ -37,21 +34,17 @@ const Register = () => {
         confirmPassword: Yup.string().oneOf([Yup.ref('password'), null], 'As senhas não coincidem.'),
       });
 
-      await schema.validate( data, {
+      await schema.validate(data, {
         abortEarly: false,
       });
 
-      api.post('auth/register', user)
-        .then(response => {
-          setIsModalOpen(true);
-        })
-        .catch(error => {
-          console.log(error);
-        });
+      await signUp(user);
+      setIsModalOpen(true);
+
     } catch (error) {
-      console.log(error);
+      alert("Erro 500");
     }
-  },[]);
+  }, []);
 
   return (
     <RegisterWrapper>
@@ -62,7 +55,7 @@ const Register = () => {
             <legend>Insira suas informações de acesso</legend>
             <Input name="email" title="E-mail" type="email" placeholder="Insira seu e-mail" required icon={GoMail} />
             <Input name="password" title="Senha" type="password" placeholder="Defina uma senha" required icon={BsEyeSlash} />
-            <Input name="confirmPassword" title="Confirme sua senha" type="password"  placeholder="Confirme sua senha" required icon={BsEyeSlash} />
+            <Input name="confirmPassword" title="Confirme sua senha" type="password" placeholder="Confirme sua senha" required icon={BsEyeSlash} />
           </fieldset>
 
           <fieldset>
@@ -77,7 +70,7 @@ const Register = () => {
         </Form>
       </main>
       <Footer />
-      {isModalOpen && <Modal title="Conta cadastrada" description="Você se cadastrou com sucesso." />}
+      {isModalOpen && <Modal title="Conta cadastrada" description="Você se cadastrou com sucesso." href="/" />}
     </RegisterWrapper>
   )
 }

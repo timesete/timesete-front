@@ -102,14 +102,14 @@ div:last-child {
 
     a {
       font-family: Nunito;
-font-style: normal;
-font-weight: 900;
-font-size: 18px;
-line-height: 28px;
+      font-style: normal;
+      font-weight: 900;
+      font-size: 18px;
+      line-height: 28px;
 
-color: #FFFFFF;
+      color: #FFFFFF;
 
-text-decoration: none;
+      text-decoration: none;
     }
   }
 }`
@@ -140,10 +140,9 @@ img {
   height: 152.6px;
 
   border-radius: 4px 4px 0px 0px;
-
 }
 
-div:last-child {
+div :last-child {
   display: flex;
   flex-direction: column;
   justify-content: center;

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Button, HomeHeader } from "../../components"
 import { Parts, ColorButton, Colors, SelectionBox, SelectorOption, Options, CriarAmigoWrapper, TomDePele, Cabelo, Corpo, Pernas } from "../../styles/pages/CriarAmigoStyles";
 
@@ -41,6 +41,10 @@ const CriarAmigo = () => {
   const renderSelectorTray = useCallback((props)=>{
     setSelectorTray(props);
   },[selectorTray]);
+
+  useEffect(()=>{
+    renderSelectorTray(tonsDePele);
+  },[])
 
   const toggleAsset = useCallback((part)=>{
     if(part.type === "tom de pele") {

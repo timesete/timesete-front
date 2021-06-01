@@ -2,19 +2,20 @@
 
 import { useRouter } from "next/router";
 import { ElementType, useEffect } from "react";
-import Cookie from "js-cookie";
+import { parseCookies } from "nookies";
 
 const withAuth = (WrappedComponent: ElementType) => {
   const Wrapper = (props: unknown) => {
     const router = useRouter();
 
-    useEffect(()=>{
-      const { token } = Cookie.get();
+    useEffect(() => {
+      const { mundodiverso_token } = parseCookies();
+      console.log()
 
-      if (!token) {
+      if (!mundodiverso_token) {
         router.replace('/entrarnaconta');
       };
-    },[]);
+    }, []);
 
     return <WrappedComponent {...props} />;
   };

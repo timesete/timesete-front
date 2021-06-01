@@ -9,6 +9,7 @@ background-color: #fff;
 
 main {
   height: 36.9375rem;
+  position: relative;
 
   >img {
     width: 100%;
@@ -33,17 +34,6 @@ main {
     font-weight: 900;
     font-size: 24px;
     line-height: 36px;
-  }
-
-  img :last-child {
-    position: absolute;
-
-    left: 200px;
-    top: 450px;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 }
 

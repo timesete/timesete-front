@@ -10,16 +10,15 @@ import { useEffect } from "react";
 import { Personagem } from "../styles/pages/MundoStyles";
 
 interface HomeProps {
-  token: string;
-  refreshToken: string;
+  mundodiverso_token: string;
 }
 
-const Home = ({ token, refreshToken }: HomeProps) => {
+const Home = ({ mundodiverso_token }: HomeProps) => {
   const { isOpenVideoModal, changeVideoStateModal, setModalParameters } = useHomeContext();
   const { changeAuthenticationState } = useAuth();
 
   useEffect(() => {
-    if (token) {
+    if (mundodiverso_token) {
       changeAuthenticationState(true);
     }
   }, [])
@@ -32,7 +31,7 @@ const Home = ({ token, refreshToken }: HomeProps) => {
           <div><p>Clique nos amigos e descubra mais sobre eles</p></div>
           <img src="icons/mundo_diverso.svg" alt="Mundo diverso personagens" />
 
-          <Personagem top={450} left={200} >
+          <Personagem top={350} left={200} >
             <img src="icons/personagens/padrao.svg" alt="Personagem padrão" onClick={()=>{
               changeVideoStateModal();
               setModalParameters({
@@ -117,9 +116,9 @@ const Home = ({ token, refreshToken }: HomeProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { token, refreshToken } = ctx.req.cookies;
+  const { mundodiverso_token } = ctx.req.cookies;
 
-  if (!token) {
+  if (!mundodiverso_token) {
     return {
       props: {
 
@@ -129,8 +128,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   return {
     props: {
-      token,
-      refreshToken,
+      mundodiverso_token,
     }
   }
 }

@@ -31,6 +31,8 @@ flex-direction: column;
 
 position: relative;
 
+box-shadow: 0px 0px 8px rgba(0, 0, 0, 0.1);
+
 
 footer {
   flex: 1;

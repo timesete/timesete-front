@@ -70,7 +70,7 @@ const RedefinirSenha = () => {
         )}
       </main>
       <Footer />
-      {isModalOpen && <Modal title="Senha redefinida" description="Você alterou sua senha com sucesso." />}
+      {isModalOpen && <Modal title="Senha redefinida" description="Você alterou sua senha com sucesso." href="/entrarnaconta" />}
     </RedefinePasswordWrapper>
 
   )

@@ -1,30 +1,78 @@
 import { createContext, FunctionComponent, useCallback, useContext, useState } from "react";
-import Cookies from "js-cookie";
+import { setCookie, destroyCookie } from "nookies";
 
-export const AuthContext = createContext({} as IAuthContext);
+import { api } from "../services/api";
 
-interface IAuthContext {
+type AuthContextType = {
   isAuthenticated: boolean;
-  logout(): void;
-  changeAuthenticationState({}: boolean): void;
+  signUp: (data: SignUpData)=> Promise<void>;
+  signIn: (data: SignInData) => Promise<void>;
+  signOut: () => void;
+  changeAuthenticationState: (props: boolean) => void;
+};
+
+type SignInData = {
+  email: string;
+  password: string;
+};
+
+type SignUpData = {
+  email: string;
+  password: string;
+  answer: string;
+  name: string;
+  photoLink: string;
 }
+
+export const AuthContext = createContext({} as AuthContextType);
 
 export const AuthProvider: FunctionComponent = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  const changeAuthenticationState = useCallback((boo: boolean)=>{
-    setIsAuthenticated(boo);
-  },[isAuthenticated]);
+  const changeAuthenticationState = useCallback((props: boolean) => {
+    setIsAuthenticated(props);
+  }, [isAuthenticated]);
 
-  const logout = useCallback(()=>{
-    Cookies.remove('token');
-    Cookies.remove('refreshToken');
+  const signIn = useCallback(async ({ email, password }: SignInData) => {
+    api.post('auth/signin', { email, password })
+      .then(response => {
+        const { token } = response.data;
 
+        setCookie(undefined, 'mundodiverso_token', token, {
+          maxAge: 60 * 60 * 24 * 1, // 1 dia
+        });
+
+        setIsAuthenticated(true);
+      }).catch(error => {
+        throw new Error(error);
+      });
+  }, [isAuthenticated]);
+
+  const signOut = useCallback(() => {
+    destroyCookie(undefined, 'mundodiverso_token')
     setIsAuthenticated(false);
-  },[isAuthenticated]);
+  }, [isAuthenticated]);
+
+  const signUp = useCallback(async ({ email, password, answer, name, photoLink }: SignUpData) => {
+    api.post('auth/register', {
+        email, password, answer, name, photoLink
+      })
+      .then(response => {
+        signIn({ email, password });
+      })
+      .catch(error => {
+        console.log(error);
+      });
+  }, [])
 
   return (
-    <AuthContext.Provider value={{ isAuthenticated, changeAuthenticationState, logout }}>
+    <AuthContext.Provider value={{
+      isAuthenticated,
+      changeAuthenticationState,
+      signOut,
+      signIn,
+      signUp,
+    }}>
       {children}
     </AuthContext.Provider>
   )
@@ -33,7 +81,7 @@ export const AuthProvider: FunctionComponent = ({ children }) => {
 export const useAuth = () => {
   const context = useContext(AuthContext);
 
-  if(!context){
+  if (!context) {
     throw new Error('Shoulbe use with AuthProvider');
   };
 

@@ -1,11 +1,8 @@
 import Link from "next/link";
-import { useRouter } from "next/router";
 import { Form } from "@unform/web";
 import { GoMail } from "react-icons/go"
 import { BsEyeSlash } from "react-icons/bs";
 import { useCallback } from "react";
-import { api } from "../../services/api";
-import cookies from "js-cookie";
 
 import { LoginWrapper } from "../../styles/pages/EntrarNaContarStyles";
 
@@ -13,28 +10,20 @@ import { Button, Footer, Header, Input } from "../../components";
 import { useAuth } from "../../context/AuthContext";
 import withAuth from "../../utils/withAuth";
 
-interface ApiResponse {
-  token: string;
-  refreshToken: string;
+type FormProps = {
+  email: string;
+  password: string;
 }
 
 const Login = () => {
-  const router = useRouter();
-  const { changeAuthenticationState } = useAuth();
+  const { signIn } = useAuth();
 
-  const handleSubmit = useCallback((data: object) => {
-    api.post<ApiResponse>('auth/signin',data)
-        .then(response => {
-        const {token, refreshToken} = response.data;
-
-        cookies.set('token', String(token), { expires: 1});
-        cookies.set('refreshToken', String(refreshToken), { expires: 1});
-
-        changeAuthenticationState(true);
-        router.push("/");
-      }).catch(error => {
-        console.log(error);
-      });
+  const handleSubmit = useCallback( async({ email, password }: FormProps) => {
+    try {
+      await signIn({email, password});
+    } catch (error) {
+      alert("Email ou senha inválios!")
+    }
   }, []);
 
   return (
