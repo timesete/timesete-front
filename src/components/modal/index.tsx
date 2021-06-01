@@ -1,5 +1,5 @@
 import Link from "next/link"
-import { FunctionComponent, useState } from "react"
+import { FunctionComponent } from "react"
 import { Button } from ".."
 import { useHomeContext } from "../../context/HomeContext"
 

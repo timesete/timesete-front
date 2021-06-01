@@ -3,7 +3,7 @@ import styled, { css } from "styled-components";
 export const MundoWrapper = styled.div`
 position: relative;
 margin: 0 auto;
-width: 77rem;
+width: 87.5%;
 
 background-color: #fff;
 
@@ -12,15 +12,13 @@ main {
   flex-direction: column;
 
   div :first-child {
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 
     position: absolute;
 
-
-
-    width: 1232px;
     height: 64px;
 
     background-color: rgba(22, 14, 27, 0.4);

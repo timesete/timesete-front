@@ -6,7 +6,7 @@ position: absolute;
 top: 0;
 
 width: 100vw;
-height: 100vh;
+height: 100%;
 
 background: rgba(22, 14, 27, 0.4);
 

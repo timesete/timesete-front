@@ -3,12 +3,16 @@ import styled from "styled-components";
 export const HomeWrapper = styled.div`
 position: relative;
 margin: 0 auto;
-width: 77rem;
+width: 90%;
 
 background-color: #fff;
 
 main {
   height: 36.9375rem;
+
+  >img {
+    width: 100%;
+  }
 
   >div :first-child {
     display: flex;
@@ -19,7 +23,7 @@ main {
 
     color: #fff;
 
-    width: 1232px;
+    width: 100%;
     height: 64px;
 
     background: rgba(22, 14, 27, 0.4);
@@ -74,9 +78,10 @@ main {
   >img {
     position: absolute;
     z-index: -15;
+    width: 100%;
 
     &:first-child{
-      top: 0;
+      top: 30px;
     }
 
     &:last-child{

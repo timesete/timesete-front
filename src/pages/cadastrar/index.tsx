@@ -3,6 +3,7 @@ import * as Yup from "yup";
 import { BsEyeSlash } from "react-icons/bs";
 import { useCallback, useState } from "react";
 import { GoMail } from "react-icons/go";
+import { useRouter } from "next/router";
 
 
 import { RegisterWrapper } from "../../styles/pages/CadastrarStyles";
@@ -17,6 +18,7 @@ interface FormData {
 
 const Register = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const router = useRouter();
 
   const handleSubmit = useCallback( async (data: FormData) => {
     const user = {
@@ -26,6 +28,8 @@ const Register = () => {
       name: data.email,
       photoLink: '',
     }
+
+    console.log(user, data)
 
     try {
       const schema = Yup.object().shape({
@@ -37,9 +41,9 @@ const Register = () => {
         abortEarly: false,
       });
 
-      api.post('auth/register', data)
+      api.post('auth/register', user)
         .then(response => {
-          console.log(response);
+          setIsModalOpen(true);
         })
         .catch(error => {
           console.log(error);

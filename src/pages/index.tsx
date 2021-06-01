@@ -3,7 +3,7 @@ import { GetServerSideProps } from "next";
 
 import { useHomeContext } from "../context/HomeContext"
 
-import { HomeWrapper, LearnMoreGrid } from "../styles/pages/HomeStyles";
+import {  HomeWrapper, LearnMoreGrid } from "../styles/pages/HomeStyles";
 import { ArticleMedium, HomeHeader, ArticleLarge, ArticleSmall, Card, Button, FooterHome, ModalInfo } from "../components"
 import { useAuth } from "../context/AuthContext";
 import { useEffect } from "react";
